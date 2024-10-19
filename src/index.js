@@ -13,18 +13,18 @@ let users=[];
 let nextId=1;
 
 app.post('/users', (req, res) => {
-    const { name, email } = req.body;
-    const newUser = { id: nextId++, name, email };
+    const { name, email } = req.body;//extracts email from request body
+    const newUser = { id: nextId++, name, email };//creates new user object
     users.push(newUser);
     res.status(201).json(newUser);
 });
 
 app.get('/users/:id', (req, res) => {
     const {id}=req.params;
-    const user=users.find(u =>u.id==id);
+    const user=users.find(u =>u.id==id);//finds user id from the url
     if(user)
     {
-        res.json(user);
+        res.json(user);//finds user in array and responsds with object
     }
     else
     {
@@ -34,10 +34,11 @@ app.get('/users/:id', (req, res) => {
 
 app.put('/users/:id', (req, res) => {
   const {id}=req.params;
-  const {name, email}=req.body;
+  const {name, email}=req.body;//extracts the name and email from request body
   const user=users.find(u=>u.id==id);
   if(user)
   {
+    //updates details if found and responds with updated object
     user.name = name;
     user.email = email;
     res.json(user);
@@ -51,8 +52,8 @@ app.put('/users/:id', (req, res) => {
 
 app.delete('/users/:id', (req, res) => {
     const {id}=req.params;
-    const index=users.findIndex(u=>u.id==id);
-    if(index!==-1)
+    const index=users.findIndex(u=>u.id==id);//extracts user id from url
+    if(index!==-1)//finds user in array and deletes if found
     {
       users.splice(index,1);
       res.status(204).send();
