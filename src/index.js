@@ -64,9 +64,7 @@ app.delete('/users/:id', (req, res) => {
     }
   });
 
-  app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
-  });
+
 
 // Do not touch the code below this comment
 // **************************************************************
